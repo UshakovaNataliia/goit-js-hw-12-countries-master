@@ -1,13 +1,14 @@
 import './scss/styles.scss';
-import '@pnotify/core/dist/BrightTheme.css';
+import { defaultModules } from '@pnotify/core';
+import * as PNotifyMobile from '@pnotify/mobile';
 import lodash from 'lodash';
-import fetchCountries from './js/fetchCountries.js';
+import {renderPage} from './js/rendering.js';
 
+defaultModules.set(PNotifyMobile, {});
 
 const input = document.querySelector('.js-input');
-input.addEventListener(
-  'input',
-  lodash.debounce(() => {
-    fetchCountries(input.value);
-  }, 500),
-);
+input.addEventListener('input', lodash.debounce(()=>{
+  renderPage()}, 500));
+
+
+
